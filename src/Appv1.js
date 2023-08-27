@@ -3,7 +3,7 @@ import { useState, useCallback } from "react";
 
 // Array containing messages to display at each step
 const messages = [
-	"Learn React ⚛️React is a JavaScript library for building user interfaces, primarily for single-page applications where you need a fast and interactive user experience. Developed and maintained by Facebook, it allows developers to create reusable UI components and manage the state and lifecycle of those components. React uses a virtual DOM to optimize rendering and improve performance, only updating portions of the page when necessary. It can be used in combination with other technologies like Redux for state management or GraphQL for data fetching. React has a strong community, extensive libraries, and has been adopted in various production environments, making it one of the most popular front-end frameworks.",
+	"Learn React ⚛️",
 	"Component  💼",
 	"Derived state 🤑",
 	"Learn Children Props",
@@ -16,32 +16,12 @@ export default function App() {
 	return (
 		<div>
 			<Steps />
-			{/*<StepMessage step={1}>
+			<StepMessage step={1}>
 				<p>Pass in Content </p>
 			</StepMessage>
 			<StepMessage step={2}>
 				<p>Read Children Props in React </p>
-	</StepMessage>*/}
-		</div>
-	);
-}
-
-// Define the Modal component
-function Modal({ isOpen, onClose, message }) {
-	// If the modal is not open, don't render anything
-	if (!isOpen) {
-		return null;
-	}
-
-	return (
-		<div className="modal-overlay">
-			<div className="modal">
-				<button className="modal-close" onClick={onClose}>
-					&times;
-				</button>
-				<h2>Learn More</h2>
-				<p>{message}</p>
-			</div>
+			</StepMessage>
 		</div>
 	);
 }
@@ -69,19 +49,6 @@ function Steps() {
 		setIsOpen((isNotOpen) => !isNotOpen);
 	}, []);
 
-	// Declare state variable for managing modal visibility
-	const [isModalOpen, setModalOpen] = useState(false);
-
-	// Define the function to show the modal
-	const showModal = useCallback((message) => {
-		setModalOpen(true);
-	}, []);
-
-	// Define the function to close the modal
-	const closeModal = useCallback(() => {
-		setModalOpen(false);
-	}, []);
-
 	// Render the UI of the component
 	return (
 		<>
@@ -106,25 +73,17 @@ function Steps() {
 					{/* Display the current step number and message */}
 
 					<StepMessage step={step}>
-						{messages[step - 1]}
+						{messages[step - 1]}{" "}
 						<Button
 							bgColor="#e7e7e7"
 							textColor="yellow"
-							onClick={() => showModal(messages[step - 1])}
+							onClick={() => alert(`Learn  ${messages[step - 1]}`)}
 						>
 							Learn More
 						</Button>
 					</StepMessage>
 
 					{/* Display the Previous and Next buttons */}
-
-					{/* Add Modal component */}
-					<Modal
-						isOpen={isModalOpen}
-						onClose={closeModal}
-						message={messages[step - 1]}
-					/>
-
 					<div className="buttons">
 						<Button bgColor="#7950f2" textColor="#fff" onClick={handlePrevious}>
 							{" "}

@@ -16,12 +16,12 @@ export default function App() {
 	return (
 		<div>
 			<Steps />
-			{/*<StepMessage step={1}>
+			<StepMessage step={1}>
 				<p>Pass in Content </p>
 			</StepMessage>
 			<StepMessage step={2}>
 				<p>Read Children Props in React </p>
-	</StepMessage>*/}
+			</StepMessage>
 		</div>
 	);
 }
@@ -69,13 +69,25 @@ function Steps() {
 		setIsOpen((isNotOpen) => !isNotOpen);
 	}, []);
 
-	// Declare state variable for managing modal visibility
+	
+  // Declare state variable for managing detailed modal message
+  const [detailedMessage, setDetailedMessage] = useState("");
+
+  
+  
+
+  // Declare state variable for managing modal visibility
 	const [isModalOpen, setModalOpen] = useState(false);
 
-	// Define the function to show the modal
-	const showModal = useCallback((message) => {
-		setModalOpen(true);
-	}, []);
+	
+  
+  // Define the function to show the modal
+  const showModal = useCallback((message, detailedMessage) => {
+    setDetailedMessage(detailedMessage);
+    setModalOpen(true);
+  }, []);
+
+ 
 
 	// Define the function to close the modal
 	const closeModal = useCallback(() => {
@@ -110,10 +122,13 @@ function Steps() {
 						<Button
 							bgColor="#e7e7e7"
 							textColor="yellow"
-							onClick={() => showModal(messages[step - 1])}
-						>
-							Learn More
-						</Button>
+							
+       
+        onClick={() => showModal(messages[step - 1], step === 1 ? "\"React is a JavaScript library for building user interfaces, primarily for single-page applications where you need a fast and interactive user experience. Developed and maintained by Facebook, it allows developers to create reusable UI components and manage the state and lifecycle of those components. React uses a virtual DOM to optimize rendering and improve performance, only updating portions of the page when necessary. It can be used in combination with other technologies like Redux for state management or GraphQL for data fetching. React has a strong community, extensive libraries, and has been adopted in various production environments, making it one of the most popular front-end frameworks.\"" : "")}
+      >
+        Learn More
+      </Button>
+						
 					</StepMessage>
 
 					{/* Display the Previous and Next buttons */}
